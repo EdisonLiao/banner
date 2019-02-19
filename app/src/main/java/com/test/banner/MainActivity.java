@@ -41,6 +41,8 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
                     String[] urls = getResources().getStringArray(R.array.url4);
                     List list = Arrays.asList(urls);
                     List arrayList = new ArrayList(list);
+                    View ggView = LayoutInflater.from(MainActivity.this).inflate(R.layout.item_gg_view,null);
+                    banner.setGGView(ggView);
                     banner.update(arrayList);
                     mSwipeLayout.setRefreshing(false);
                     break;

@@ -73,6 +73,8 @@ public class Banner extends FrameLayout implements OnPageChangeListener {
     private OnBannerClickListener bannerListener;
     private OnBannerListener listener;
     private DisplayMetrics dm;
+    private View ggView;
+    private static String GG_LABLE = "GG";
 
     private WeakHandler handler = new WeakHandler();
 
@@ -271,6 +273,10 @@ public class Banner extends FrameLayout implements OnPageChangeListener {
         return this;
     }
 
+    public void setGGView(View view){
+        ggView = view;
+    }
+
     private void setTitleStyleUI() {
         if (titles.size() != imageUrls.size()) {
             throw new RuntimeException("[Banner] --> The number of titles and images is different");
@@ -356,11 +362,22 @@ public class Banner extends FrameLayout implements OnPageChangeListener {
             } else {
                 url = imagesUrl.get(i - 1);
             }
-            imageViews.add(imageView);
-            if (imageLoader != null)
+
+            String urlStr = url.toString();
+            boolean isGGView = urlStr.contains(GG_LABLE);
+            if (isGGView) {
+                if (ggView == null) return;
+
+                imageViews.add(ggView);
+            } else {
+                imageViews.add(imageView);
+            }
+
+            if (imageLoader != null && !isGGView) {
                 imageLoader.displayImage(context, url, imageView);
-            else
+            } else {
                 Log.e(tag, "Please set images loader.");
+            }
         }
     }
 
