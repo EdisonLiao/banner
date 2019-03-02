@@ -277,6 +277,10 @@ public class Banner extends FrameLayout implements OnPageChangeListener {
         ggView = view;
     }
 
+    public View getGGView(){
+        return ggView;
+    }
+
     private void setTitleStyleUI() {
         if (titles.size() != imageUrls.size()) {
             throw new RuntimeException("[Banner] --> The number of titles and images is different");
