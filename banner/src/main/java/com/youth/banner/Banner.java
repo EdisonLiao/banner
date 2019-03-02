@@ -528,6 +528,11 @@ public class Banner extends FrameLayout implements OnPageChangeListener {
 
         @Override
         public Object instantiateItem(ViewGroup container, final int position) {
+            ViewGroup parentView = (ViewGroup) imageViews.get(position).getParent();
+            if (parentView != null){
+                parentView.removeView(imageViews.get(position));
+            }
+
             container.addView(imageViews.get(position));
             View view = imageViews.get(position);
             if (bannerListener != null) {
