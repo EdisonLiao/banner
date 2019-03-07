@@ -360,7 +360,10 @@ public class Banner extends FrameLayout implements OnPageChangeListener {
             setScaleType(imageView);
             Object url = null;
             if (i == 0) {
-                url = imagesUrl.get(count - 1);
+                url = imagesUrl.get(count - 1); //最后一个是广告位所以不能拿最后一个的图片url
+                if (url.toString().contains(GG_LABLE)){
+                    url = imagesUrl.get(0);
+                }
             } else if (i == count + 1) {
                 url = imagesUrl.get(0);
             } else {
